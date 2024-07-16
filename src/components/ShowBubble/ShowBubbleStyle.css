@@ -1,0 +1,43 @@
+/* ShowBubbleStyle.css */
+
+/*כל משתחת ל.show class name */
+/* .quill {
+  border: 1px green solid;
+  border-radius: 1rem;
+}
+.ql-toolbar.ql-snow,
+.ql-container.ql-snow {
+  border: 0;
+}
+
+.ql-editor li:not(.ql-direction-rtl)::before {
+  margin-left: 0%;
+} */
+/* ShowBubbleStyle.css */
+
+/* General styling for elements */
+.bubble-editor {
+  border: 1px green solid;
+  border-radius: 1rem;
+  padding: 10px;
+}
+
+/* Unique styles for the bubble theme */
+.bubble-editor .ql-toolbar.ql-bubble {
+  border-bottom: 1rem solid violet; /* Example of styling the bubble theme toolbar */
+}
+
+.bubble-editor .ql-container.ql-bubble {
+  /* Example of styling the bubble theme container */
+  border: red 1px solid;
+}
+
+.bubble-editor .ql-editor.ql-bubble {
+  height: 300px; /* Example of setting a specific height for the bubble theme editor */
+  direction: rtl; /* Example of setting text direction to right-to-left */
+}
+
+/* Additional unique styles */
+.bubble-editor .ql-editor.ql-bubble li:not(.ql-direction-rtl)::before {
+  margin-left: 0%; /* Example of specific styling for list items in the bubble theme editor */
+}
