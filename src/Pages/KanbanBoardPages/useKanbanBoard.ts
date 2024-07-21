@@ -23,6 +23,7 @@ export function useKanbanBoard() {
       id: generateId(),
       columnId,
       content: `Task ${tasks.length + 1}`,
+      time: 0
     }
 
     setTasks([...tasks, newTask])
