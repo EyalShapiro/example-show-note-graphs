@@ -1,22 +1,21 @@
-import { useState } from 'react'
-import { useSortable } from '@dnd-kit/sortable'
-import { CSS } from '@dnd-kit/utilities'
-import { ShowBubble } from '../../components/ShowBubble'
-import { Id, Task } from '../../components/Kanban/types'
-import ReactQuill from 'react-quill'
-import { toolbarTaskCard } from '../../components/Kanban/TaskCard/toolbarTaskCard'
-import TrashIcon from '../../components/icons/TrashIcon'
+import { useState } from "react";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { Id, Task } from "../../components/Kanban/types";
+import ReactQuill from "react-quill";
+import { toolbarTaskCard } from "../../components/Kanban/TaskCard/toolbarTaskCard";
+import TrashIcon from "../../components/icons/TrashIcon";
 
 interface Props {
-  task: Task
-  deleteTask: (id: Id) => void
-  updateTask: (id: Id, content: string) => void
+  task: Task;
+  deleteTask: (id: Id) => void;
+  updateTask: (id: Id, content: string) => void;
 }
 
 function TaskCard({ task, deleteTask, updateTask }: Props) {
-  const [mouseIsOver, setMouseIsOver] = useState(true)
-  const [editMode, setEditMode] = useState(true)
-  const { formats, modules } = toolbarTaskCard()
+  const [mouseIsOver, setMouseIsOver] = useState(true);
+  const [editMode, setEditMode] = useState(true);
+  const { formats, modules } = toolbarTaskCard();
 
   const {
     setNodeRef,
@@ -28,21 +27,21 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
   } = useSortable({
     id: task.id,
     data: {
-      type: 'Task',
+      type: "Task",
       task,
     },
     disabled: editMode,
-  })
+  });
 
   const style = {
     transition,
     transform: CSS.Transform.toString(transform),
-  }
+  };
 
   const toggleEditMode = () => {
-    setEditMode((prev) => !prev)
-    setMouseIsOver(false)
-  }
+    setEditMode((prev) => !prev);
+    setMouseIsOver(false);
+  };
 
   if (isDragging) {
     return (
@@ -51,7 +50,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
         style={style}
         className="relative flex h-[150px] min-h-[150px] cursor-grab items-center rounded-xl border-2 border-teal-500 bg-teal-300 p-2.5 text-left opacity-30"
       />
-    )
+    );
   }
 
   if (editMode) {
@@ -75,7 +74,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
           Save
         </button>
       </div>
-    )
+    );
   }
 
   return (
@@ -91,7 +90,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
       {mouseIsOver && (
         <button
           onClick={() => {
-            deleteTask(task.id)
+            deleteTask(task.id);
           }}
           className="absolute right-4 top-1/2 -translate-y-1/2 rounded bg-columnBackgroundColor stroke-white p-2 opacity-60 hover:opacity-100"
         >
@@ -99,7 +98,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
         </button>
       )}
     </div>
-  )
+  );
 }
 
-export default TaskCard
+export default TaskCard;

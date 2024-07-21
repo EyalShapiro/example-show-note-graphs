@@ -1,30 +1,46 @@
 /** App.tsx */
-import React from 'react'
-import { useForm, FormProvider } from 'react-hook-form'
-import './App.css'
-// import FormPages from './Pages/FormPages'
-import KanbanBoardPages from './Pages/KanbanBoardPages'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import DashboardPage from './Pages/DashboardPage' // Ensure the import is correct
-import Home from './Pages/Home' // Correctly import the Home component
-import Header from './components/Header'
+import React from "react";
+import { useForm, FormProvider } from "react-hook-form";
+import "./App.css";
+import FormPages from "./Pages/FormPages";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Home from "./Pages/Home";
+import Header from "./components/Header";
+import { Id } from "./components/Kanban/types";
+const KanbanBoardPages = React.lazy(() => import("./Pages/KanbanBoardPages"));
+
+const DashboardPage = React.lazy(() => import("./Pages/DashboardPage"));
 
 export default function App() {
-  const methods = useForm()
+  const methods = useForm();
 
   return (
-    <div className="App relative max-h-full w-full">
+    <div className="App ">
       <Router>
         <div className="flex h-screen flex-col">
           <Header />
           <div className="flex-grow pt-20">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/card" element={<KanbanBoardPages />} />
               <Route
-                path="/card"
+                path="/FormPages"
                 element={
                   <FormProvider {...methods}>
-                    <KanbanBoardPages /> {/* <FormPages></FormPages> */}
+                    <FormPages
+                      task={{
+                        id: "",
+                        columnId: "",
+                        content: "",
+                        time: 0,
+                      }}
+                      deleteTask={function (): void {
+                        throw new Error("Function not implemented.");
+                      }}
+                      updateTask={function (): void {
+                        throw new Error("Function not implemented.");
+                      }}
+                    ></FormPages>
                   </FormProvider>
                 }
               />
@@ -34,7 +50,7 @@ export default function App() {
                 element={
                   <div>
                     Not found
-                    <Link to={'/'}>
+                    <Link to={"/"}>
                       <b className="text-sky-400">Go to Home</b>
                     </Link>
                   </div>
@@ -45,5 +61,5 @@ export default function App() {
         </div>
       </Router>
     </div>
-  )
+  );
 }

@@ -1,0 +1,17 @@
+.ql-snow.ql-toolbar,
+.ql-snow.ql-container {
+  border: 0;
+}
+
+.ql-snow .ql-editor {
+  height: 80px !important;
+  width: 100%;
+  direction: rtl;
+  border-radius: 1%;
+  border: 0;
+  text-align: right; /* Align text to the right */
+}
+
+.ql-editor li:not(.ql-direction-rtl)::before {
+  margin-left: 0%;
+}

@@ -1,0 +1,58 @@
+/* EditorComponent.css */
+
+/* דרך אחת
+ כל משתחת ל.qst class name
+ */
+/* .qst .quill {
+  border: 0.5rem darkcyan solid;
+  border-radius: 1.5rem;
+}
+
+.qst .ql-snow.ql-toolbar,
+.qst .ql-snow.ql-container {
+  border: 0;
+}
+
+.qst .ql-toolbar.ql-snow {
+  border-bottom: 1px solid red;
+}
+
+.qst .ql-editor {
+  height: 200px;
+  direction: rtl;
+  border-radius: 1%;
+  border: 0;
+  text-align: right; /* Align text to the right */
+/* } */
+/* 
+.ql-editor li:not(.ql-direction-rtl)::before {
+  margin-left: 0%;
+} */
+
+/* =============== */
+
+.snow-editor.quill {
+  border: 0.5rem darkcyan solid;
+  border-radius: 1.5rem;
+}
+
+.ql-snow.ql-toolbar,
+.ql-snow.ql-container {
+  border: 0;
+}
+
+.ql-toolbar.ql-snow {
+  border-bottom: 1px solid red;
+}
+
+.ql-snow .ql-editor {
+  height: 300px !important;
+  direction: rtl;
+  border-radius: 1%;
+  border: 0;
+  text-align: right; /* Align text to the right */
+}
+
+.ql-editor li:not(.ql-direction-rtl)::before {
+  margin-left: 0%;
+}

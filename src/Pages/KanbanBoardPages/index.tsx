@@ -1,16 +1,16 @@
-import PlusIcon from '../../components/icons/PlusIcon'
+import PlusIcon from "../../components/icons/PlusIcon";
 import {
   useSensors,
   useSensor,
   PointerSensor,
   DndContext,
   DragOverlay,
-} from '@dnd-kit/core'
-import { SortableContext } from '@dnd-kit/sortable'
-import { createPortal } from 'react-dom'
-import ColumnContainer from '../../components/Kanban/ColumnContainer'
-import { useKanbanBoard } from './useKanbanBoard'
-import TaskCard from '../../components/Kanban/TaskCard'
+} from "@dnd-kit/core";
+import { SortableContext } from "@dnd-kit/sortable";
+import { createPortal } from "react-dom";
+import ColumnContainer from "../../components/Kanban/ColumnContainer";
+import { useKanbanBoard } from "./useKanbanBoard";
+import TaskCard from "../../components/Kanban/TaskCard";
 
 function KanbanBoardPages() {
   // קריאה לפונקציית custom hook שמחזירה נתונים ופונקציות עבור לוח הקאנבן
@@ -29,7 +29,7 @@ function KanbanBoardPages() {
     onDragStart,
     onDragEnd,
     onDragOver,
-  } = useKanbanBoard()
+  } = useKanbanBoard();
 
   // יצירת חיישנים עבור מערכת הגרירה
   const sensors = useSensors(
@@ -38,7 +38,7 @@ function KanbanBoardPages() {
         distance: 10,
       },
     })
-  )
+  );
 
   return (
     <div className="m-auto flex min-h-screen w-full items-center overflow-x-auto overflow-y-hidden px-[40px]">
@@ -68,7 +68,7 @@ function KanbanBoardPages() {
           </div>
           <button
             onClick={() => {
-              createNewColumn()
+              createNewColumn();
             }}
             className="flex h-[60px] w-[350px] min-w-[350px] cursor-pointer gap-2 rounded-lg border-2 border-columnBackgroundColor bg-mainBackgroundColor p-4 ring-rose-500 hover:ring-2"
           >
@@ -106,7 +106,7 @@ function KanbanBoardPages() {
         )}
       </DndContext>
     </div>
-  )
+  );
 }
 
-export default KanbanBoardPages
+export default KanbanBoardPages;

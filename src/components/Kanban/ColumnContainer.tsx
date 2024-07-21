@@ -1,23 +1,23 @@
-import { SortableContext, useSortable } from '@dnd-kit/sortable'
-import TrashIcon from '../icons/TrashIcon'
-import { Column, Id, Task } from './types/index'
-import { CSS } from '@dnd-kit/utilities'
-import { useMemo, useState } from 'react'
-import PlusIcon from '../icons/PlusIcon'
-import TaskCard from './TaskCard'
+import { SortableContext, useSortable } from "@dnd-kit/sortable";
+import TrashIcon from "../icons/TrashIcon";
+import { Column, Id, Task } from "./types/index";
+import { CSS } from "@dnd-kit/utilities";
+import { useMemo, useState } from "react";
+import PlusIcon from "../icons/PlusIcon";
+import TaskCard from "./TaskCard";
 
 interface Props {
-  column: Column
-  deleteColumn: (id: Id) => void
-  updateColumn: (id: Id, title: string) => void
+  column: Column;
+  deleteColumn: (id: Id) => void;
+  updateColumn: (id: Id, title: string) => void;
 
-  createTask: (columnId: Id) => void
-  updateTask: (id: Id, content: string) => void
-  deleteTask: (id: Id) => void
-  tasks: Task[]
+  createTask: (columnId: Id) => void;
+  updateTask: (id: Id, content: string) => void;
+  deleteTask: (id: Id) => void;
+  tasks: Task[];
 }
 
-function ColumnContainer({
+export default function ColumnContainer({
   column,
   deleteColumn,
   updateColumn,
@@ -26,11 +26,11 @@ function ColumnContainer({
   deleteTask,
   updateTask,
 }: Props) {
-  const [editMode, setEditMode] = useState(false)
+  const [editMode, setEditMode] = useState(false);
 
   const tasksIds = useMemo(() => {
-    return tasks.map((task) => task.id)
-  }, [tasks])
+    return tasks.map((task) => task.id);
+  }, [tasks]);
 
   const {
     setNodeRef,
@@ -42,16 +42,16 @@ function ColumnContainer({
   } = useSortable({
     id: column.id,
     data: {
-      type: 'Column',
+      type: "Column",
       column,
     },
     disabled: editMode,
-  })
+  });
 
   const style = {
     transition,
     transform: CSS.Transform.toString(transform),
-  }
+  };
 
   if (isDragging) {
     return (
@@ -60,7 +60,7 @@ function ColumnContainer({
         style={style}
         className="flex h-[500px] max-h-[500px] w-[350px] flex-col rounded-md border-2 border-pink-500 bg-columnBackgroundColor opacity-40"
       ></div>
-    )
+    );
   }
 
   return (
@@ -74,7 +74,7 @@ function ColumnContainer({
         {...attributes}
         {...listeners}
         onClick={() => {
-          setEditMode(true)
+          setEditMode(true);
         }}
         className="text-md flex h-[60px] cursor-grab items-center justify-between rounded-md rounded-b-none border-4 border-columnBackgroundColor bg-mainBackgroundColor p-3 font-bold"
       >
@@ -90,18 +90,18 @@ function ColumnContainer({
               onChange={(e) => updateColumn(column.id, e.target.value)}
               autoFocus
               onBlur={() => {
-                setEditMode(false)
+                setEditMode(false);
               }}
               onKeyDown={(e) => {
-                if (e.key !== 'Enter') return
-                setEditMode(false)
+                if (e.key !== "Enter") return;
+                setEditMode(false);
               }}
             />
           )}
         </div>
         <button
           onClick={() => {
-            deleteColumn(column.id)
+            deleteColumn(column.id);
           }}
           className="rounded stroke-gray-500 px-1 py-2 hover:bg-columnBackgroundColor hover:stroke-white"
         >
@@ -126,14 +126,12 @@ function ColumnContainer({
       <button
         className="flex items-center gap-2 rounded-md border-2 border-columnBackgroundColor border-x-columnBackgroundColor p-4 hover:bg-mainBackgroundColor hover:text-rose-500 active:bg-black"
         onClick={() => {
-          createTask(column.id)
+          createTask(column.id);
         }}
       >
         <PlusIcon />
         Add task
       </button>
     </div>
-  )
+  );
 }
-
-export default ColumnContainer
