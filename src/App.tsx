@@ -1,15 +1,16 @@
 /** App.tsx */
 import React from "react";
 import { useForm, FormProvider } from "react-hook-form";
-import "./App.css";
-import FormPages from "./Pages/FormPages";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+const KanbanBoardPages = React.lazy(() => import("./Pages/KanbanBoardPages"));
+const DashboardPage = React.lazy(() => import("./Pages/DashboardPage"));
+
+import FormPages from "./Pages/FormPages";
 import Home from "./Pages/Home";
 import Header from "./components/Header";
-import { Id } from "./components/Kanban/types";
-const KanbanBoardPages = React.lazy(() => import("./Pages/KanbanBoardPages"));
 
-const DashboardPage = React.lazy(() => import("./Pages/DashboardPage"));
+
 
 export default function App() {
   const methods = useForm();
@@ -22,7 +23,7 @@ export default function App() {
           <div className="flex-grow pt-20">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/card" element={<KanbanBoardPages />} />
+              <Route path="/card" element={<Suspense fallback={<div>loding...</div>}><KanbanBoardPages /></Suspense>} />
               <Route
                 path="/FormPages"
                 element={
@@ -44,8 +45,7 @@ export default function App() {
                   </FormProvider>
                 }
               />
-              <Route path="/Dashboard" element={<DashboardPage />} />
-              <Route
+              <Route path="/Dashboard" element={<Suspense fallback={<div>loding...</div>}><DashboardPage /></Suspense>} /><Route
                 path="*"
                 element={
                   <div>
