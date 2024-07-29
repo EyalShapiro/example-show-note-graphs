@@ -39,7 +39,11 @@ function KanbanBoardPages() {
       },
     })
   );
+  const navigate = useNavigate();
 
+	const handleTaskClick = (taskId) => {
+		navigate(`/task/${taskId}`);
+	};
   return (
     <div className="m-auto flex min-h-screen w-full items-center overflow-x-auto overflow-y-hidden px-[40px]">
       <DndContext

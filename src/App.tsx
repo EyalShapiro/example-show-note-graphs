@@ -1,5 +1,5 @@
 /** App.tsx */
-import React from "react";
+import React, { Suspense } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 

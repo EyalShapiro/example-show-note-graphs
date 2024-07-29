@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+
+import React, { useState } from 'react'
 import {
   BarChart,
   Bar,
@@ -7,26 +8,28 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-} from "recharts";
-import _ from "lodash";
-import Select from "react-select";
+} from 'recharts'
+import _ from 'lodash'
+import Select from 'react-select'
+import { defaultTasks } from '../Kanban/data'
+import { stringToColor } from './function/stringToColor'
+import { TimeOption } from './types/DashboardType'
+import { filterTasksByTime } from './function/filterTasksByTime'
+import { timeOptions } from './function/timeOptions'
 
-import { defaultTasks } from "../Kanban/data";
-import { stringToColor } from "./function/stringToColor";
-import { TimeOption } from "./types/DashboardType";
-import { filterTasksByTime } from "./function/filterTasksByTime";
-import { timeOptions } from "./function/timeOptions";
+import CustomYAxis from './customYAxis'
+import CustomXAxis from './customXAxis'
 
 const Dashboard: React.FC = () => {
-  const [selectedTime, setSelectedTime] = useState<TimeOption>(timeOptions[0]);
+  const [selectedTime, setSelectedTime] = useState<TimeOption>(timeOptions[0])
 
-  const filteredTasks = filterTasksByTime(defaultTasks, selectedTime.value);
-  const groupedTasks = _.groupBy(filteredTasks, "columnId");
+  const filteredTasks = filterTasksByTime(defaultTasks, selectedTime.value)
+  const groupedTasks = _.groupBy(filteredTasks, 'columnId')
   const data = Object.keys(groupedTasks).map((key) => ({
     name: key,
     value: groupedTasks[key].length,
     fill: stringToColor(key),
-  }));
+  }))
 
   return (
     <div>
@@ -48,14 +51,14 @@ const Dashboard: React.FC = () => {
         }}
       >
         <CartesianGrid strokeDasharray="4 1 2" />
-        <XAxis dataKey="name" />
-        <YAxis />
+        <CustomXAxis allowDecimals={true} dataKey="name" />
+        <CustomYAxis type="number" allowDecimals={true} />
         <Tooltip />
         <Legend />
         <Bar dataKey="value" fill="darkblue" />
       </BarChart>
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard
